@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #202020;
+            color: white;
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            border: 3px soldi white;
+            border-radius: 50px;
+            background: #202020;
+            color: white;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #stopwatch {
+            font-size: 100px;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -55%);
+        }
+
+        #buttons {
+            position: absolute;
+            top: 55%;
+            left: 48.4%;
+            transform: translate(-51.6%, -45%);
+        }
+
+        #buttons li {
+            display: inline;
+            padding-left: 10px;
+        }
+    </style>
+
+    <title>Stopwatch</title>
+</head>
+
+<body>
+    <div id="stopwatch">
+        00:00:00
+    </div>
+
+    <ul id="buttons">
+        <li><button onclick="startStop()">Start/Stop</button></li>
+
+        <li><button onclick="resetTimer()">Reset</button></li>
+    </ul>
+</body>
+
+<script>
+    let timer;
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+
+    function startStop() {
+        if (!timer) {
+            timer = setInterval(runTimer, 1000);
+        } else {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function startStop() {
+        if (!timer) {
+            timer = setInterval(runTimer, 1000);
+        } else {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function runTimer() {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes === 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+        displayTime();
+    }
+
+    function displayTime() {
+        const display = document.getElementById('stopwatch');
+        const formatTime = formatTime(hours) + ':' + formatTime(minutes) + ':' + (seconds) + ':' ;
+    display.textContext = formattedTime;
+    }
+
+    function formatTime(time) {
+        return time < 10 ? '0' + time : time;
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = null;
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        displayTime();
+    }
+</script>
+</body>
+
+</html>
